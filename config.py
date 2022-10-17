@@ -5,3 +5,9 @@ class Config(object):
     BATCH_SIZE = 64
     SEQ_LEN = 3
     VOCAB_SIZE = 10000
+    INPUT_SIZE = 300
+    HIDDEN_SIZE = 200
+    LAYERS = 1
+    DROP_RATE = 0
+    LSTM_BI = True
+    OUTPUT_SIZE = 9998
