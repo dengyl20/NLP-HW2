@@ -11,3 +11,5 @@ class Config(object):
     DROP_RATE = 0
     LSTM_BI = True
     OUTPUT_SIZE = 9998
+    LR = 0.001
+    EPOCH = 30

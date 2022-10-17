@@ -19,6 +19,13 @@ class Lstm(nn.Module):
         self.h_s = None
         self.h_c = None
         
+    def forward(self, x, _h_s, _h_c):    # x是输入数据集
+        r_out, (h_s, h_c) = self.rnn(x,(_h_s,_h_c))   # 如果不导入h_s和h_c，默认每次都进行0初始化
+                                          #  h_s和h_c表示每一个隐层的上一时间点输出值和输入细胞状态
+                                          # h_s和h_c的格式均是(num_layers * num_directions, batch, HIDDEN_SIZE)
+                                          # 如果是双向LSTM，num_directions是2，单向是1
+        output = self.hidden_out(r_out)
+        return output, h_s, h_c
     def forward(self, x):    # x是输入数据集
         r_out, (h_s, h_c) = self.rnn(x)   # 如果不导入h_s和h_c，默认每次都进行0初始化
                                           #  h_s和h_c表示每一个隐层的上一时间点输出值和输入细胞状态
