@@ -3,7 +3,7 @@ from config import Config
 
 
 class Lstm(nn.Module):
-    def __init__(self):
+    def __init__(self,h_s,h_c):
         super(Lstm, self).__init__()
         config = Config()
         self.rnn = nn.LSTM(
@@ -25,4 +25,4 @@ class Lstm(nn.Module):
                                           # h_s和h_c的格式均是(num_layers * num_directions, batch, HIDDEN_SIZE)
                                           # 如果是双向LSTM，num_directions是2，单向是1
         output = self.hidden_out(r_out)
-        return output
+        return output, h_s, h_c
