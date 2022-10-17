@@ -66,16 +66,43 @@ def load_dataset(train_dir: str, test_dir: str, vocab_dir: str) -> tuple:
     return train_data, test_data, word_to_id
 
 
+def get_numpy_word_embed(word2ix: dict, file_path: str, embed_dim: int) -> list[list[float]]:
+    words_embed = {}
+    with open(file_path, mode='r') as f:
+        lines = tqdm(f.readlines())
+        for line in lines:
+            line_list = line.split()
+            word = line_list[0]
+            embed = line_list[1:]
+            embed = [float(num) for num in embed]
+            if len(embed) != embed_dim:
+                if len(embed) < embed_dim:
+                    embed.extend([0] * (embed_dim - len(embed)))
+                else:
+                    embed = embed[:embed_dim]
+            words_embed[word] = embed
+            lines.set_description(f"Reading file: {file_path}")
+    ix2word = {ix: w for w, ix in word2ix.items()}
+    id2emb = {}
+    for ix in range(len(word2ix)):
+        if ix2word[ix] in words_embed:
+            id2emb[ix] = words_embed[ix2word[ix]]
+        else:
+            id2emb[ix] = [0.0] * embed_dim
+    data = [id2emb[ix] for ix in range(len(word2ix))]
+    return data
+
+
 # > This class loads data from a file and returns a list of lists
 class DataLoader(object):
     """Data Loader"""
 
-    def __init__(self, data: list, batch_num: int = 1000, batch_size: int = 64, seq_len: int = 3,
+    def __init__(self, data: list, batch_size: int = 64, seq_len: int = 3,
             shuffle: bool = False):
         """Initialize the DataLoader"""
         self.batch_size = batch_size
         self.seq_len = seq_len
-        self.batch_num = batch_num
+        self.batch_num = len(data) // (batch_size * seq_len) - 1
         self.data = data
         self.shuffle = shuffle
         # The number of steps in each batch
