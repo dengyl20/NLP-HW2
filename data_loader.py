@@ -46,7 +46,7 @@ def read_vocab(vocab_dir: str) -> list:
     return words
 
 
-def load_dataset(train_dir: str, test_dir: str, vocab_dir: str) -> tuple:
+def load_dataset(train_dir: str, valid_dir: str, test_dir: str, vocab_dir: str) -> tuple:
     """Load the dataset"""
     # Read the vocabulary
     words = read_vocab(vocab_dir)
@@ -59,11 +59,15 @@ def load_dataset(train_dir: str, test_dir: str, vocab_dir: str) -> tuple:
     train_data = [word_to_id[x] for x in train_data]
     print("train_data_len: ", len(train_data))
     # Read the test set
+    valid_data = read_file(valid_dir)
+    valid_data = [word_to_id[x] for x in valid_data]
+    print("valid_data_len: ", len(valid_data))
+
     test_data = read_file(test_dir)
     test_data = [word_to_id[x] for x in test_data]
     print("test_data_len: ", len(test_data))
 
-    return train_data, test_data, word_to_id
+    return train_data, valid_data, test_data, word_to_id
 
 
 def get_numpy_word_embed(word2ix: dict, file_path: str, embed_dim: int) -> list[list[float]]:
@@ -113,7 +117,8 @@ class DataLoader(object):
 
     def __iter__(self):
         return self
-
+    def __len__(self):
+        return self.batch_num
     def __next__(self):
         return self.next()
 

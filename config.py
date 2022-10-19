@@ -4,6 +4,7 @@ import torch
 class Config(object):
     TRAIN_DATA_PATH = "data/ptb.train.txt"
     TEST_DATA_PATH = "data/ptb.test.txt"
+    VALID_DATA_PATH = "data/ptb.valid.txt"
     VOCAB_PATH = "data/vocab.txt"
     BATCH_SIZE = 64
     SEQ_LEN = 3

@@ -1,0 +1,149 @@
+Vocabulary size: 10000
+Reading file: data/ptb.train.txt:  66%|████train_data_len:  887521:01<00:00, 20257.94it/s]
+Reading file: data/ptb.train.txt: 100%|██████████| 42068/42068 [00:02<00:00, 19463.68it/s]
+Reading file: data/ptb.test.txt: 100%|██████████| 3761/3761 [00:00<00:00, 22046.99it/s]
+test_data_len:  78669
+样本数：887521
+词典大小： 10000
+Reading file: data/glove.6B.300d.txt: 100%|██████████| 400000/400000 [00:46<00:00, 8594.50it/s] 
+epoch: 0,  loss: 1.658357: : 4621it [00:23, 199.18it/s]
+408it [00:01, 206.11it/s]
+Traceback (most recent call last):
+  File "/var/lib/shared_volume/home/shaomaanping/nlphw2/NLP-HW2/train.py", line 141, in <module>
+    obj.run()
+  File "/var/lib/shared_volume/home/shaomaanping/nlphw2/NLP-HW2/train.py", line 103, in run
+    self.train(train_data_loader, valid_data_loader, model, optimizer, criterion, word_to_id)
+  File "/var/lib/shared_volume/home/shaomaanping/nlphw2/NLP-HW2/train.py", line 68, in train
+    print("epoch:%d,accuracy:%f"%epoch %accuracy)
+TypeError: not enough arguments for format string
+srun: error: thunlp-215-4: task 0: Exited with exit code 1
+(smap) shaomaanping@thunlp-121-jump:~/nlphw2/NLP-HW2$ python /home/shaomaanping/test.py
+tensor(4)
+(smap) shaomaanping@thunlp-121-jump:~/nlphw2/NLP-HW2$ python /home/shaomaanping/test.py
+4
+(smap) shaomaanping@thunlp-121-jump:~/nlphw2/NLP-HW2$ srun -G 1 python train.py 
+Vocabulary size: 10000
+Reading file: data/ptb.train.txt:  80%|████████  train_data_len:  887521:00, 19410.20it/s]
+Reading file: data/ptb.train.txt: 100%|██████████| 42068/42068 [00:02<00:00, 17932.40it/s]
+Reading file: data/ptb.test.txt: 100%|██████████| 3761/3761 [00:00<00:00, 21951.09it/s]
+test_data_len:  78669
+样本数：887521
+词典大小： 10000
+Reading file: data/glove.6B.300d.txt: 100%|██████████| 400000/400000 [00:49<00:00, 8074.89it/s]
+epoch: 0,  loss: 2.012564: : 4621it [00:23, 194.07it/s]
+408it [00:00, 1110.11it/s]
+epoch:0,accuracy:0.717690
+Traceback (most recent call last):
+  File "/var/lib/shared_volume/home/shaomaanping/nlphw2/NLP-HW2/train.py", line 138, in <module>
+    obj.run()
+  File "/var/lib/shared_volume/home/shaomaanping/nlphw2/NLP-HW2/train.py", line 100, in run
+    self.train(train_data_loader, valid_data_loader, model, optimizer, criterion, word_to_id)
+  File "/var/lib/shared_volume/home/shaomaanping/nlphw2/NLP-HW2/train.py", line 68, in train
+    torch.save(model.state_dict(), '%s_%s.pth' % (self.config.MODEL_PATH, epoch))
+  File "/home/shaomaanping/anaconda3/envs/smap/lib/python3.9/site-packages/torch/serialization.py", line 376, in save
+    with _open_file_like(f, 'wb') as opened_file:
+  File "/home/shaomaanping/anaconda3/envs/smap/lib/python3.9/site-packages/torch/serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/shaomaanping/anaconda3/envs/smap/lib/python3.9/site-packages/torch/serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'model/lstm.m_0.pth'
+srun: error: thunlp-215-5: task 0: Exited with exit code 1
+(smap) shaomaanping@thunlp-121-jump:~/nlphw2/NLP-HW2$ srun -G 1 python train.py 
+Vocabulary size: 10000
+Reading file: data/ptb.train.txt:  78%|███████▊  | 32713/42068 [00:01<00:00, 201train_data_len:  887521
+Reading file: data/ptb.train.txt: 100%|██████████| 42068/42068 [00:02<00:00, 19182.29it/s]
+Reading file: data/ptb.test.txt: 100%|██████████| 3761/3761 [00:00<00:00, 23349.46it/s]
+test_data_len:  78669
+样本数：887521
+词典大小： 10000
+Reading file: data/glove.6B.300d.txt: 100%|██████████| 400000/400000 [00:47<00:00, 8417.08it/s] 
+epoch: 0,  loss: 2.057544: : 4621it [00:23, 195.10it/s]
+408it [00:00, 1118.44it/s]
+epoch:0,accuracy:0.717422
+epoch: 1,  loss: 1.819279: : 4621it [00:23, 197.81it/s]
+408it [00:00, 1130.90it/s]
+epoch:1,accuracy:0.729396
+epoch: 2,  loss: 1.658443: : 4621it [00:23, 197.16it/s]
+408it [00:00, 1122.52it/s]
+epoch:2,accuracy:0.728362
+epoch: 3,  loss: 1.522122: : 4621it [00:23, 198.32it/s]
+408it [00:00, 1123.79it/s]
+epoch:3,accuracy:0.725299
+epoch: 4,  loss: 1.399970: : 4621it [00:23, 194.46it/s]
+408it [00:00, 1123.21it/s]
+epoch:4,accuracy:0.722299
+epoch: 5,  loss: 1.265813: : 4621it [00:23, 197.69it/s]
+408it [00:00, 1116.06it/s]
+epoch:5,accuracy:0.719465
+epoch: 6,  loss: 1.129245: : 4621it [00:22, 201.93it/s]
+408it [00:00, 1120.51it/s]
+epoch:6,accuracy:0.716248
+epoch: 7,  loss: 1.025966: : 4621it [00:23, 196.46it/s]
+408it [00:00, 1125.67it/s]
+epoch:7,accuracy:0.713350
+epoch: 8,  loss: 0.917298: : 4621it [00:23, 197.93it/s]
+408it [00:00, 1127.62it/s]
+epoch:8,accuracy:0.710963
+epoch: 9,  loss: 0.850442: : 4621it [00:23, 196.47it/s]
+408it [00:00, 1120.21it/s]
+epoch:9,accuracy:0.708167
+epoch: 10,  loss: 0.793631: : 4621it [00:23, 196.07it/s]
+408it [00:00, 1127.23it/s]
+epoch:10,accuracy:0.706674
+epoch: 11,  loss: 0.746511: : 4621it [00:23, 194.00it/s]
+408it [00:00, 1124.84it/s]
+epoch:11,accuracy:0.704172
+epoch: 12,  loss: 0.705227: : 4621it [00:23, 196.51it/s]
+408it [00:00, 1124.24it/s]
+epoch:12,accuracy:0.702231
+epoch: 13,  loss: 0.673237: : 4621it [00:22, 201.42it/s]
+408it [00:00, 1125.78it/s]
+epoch:13,accuracy:0.701414
+epoch: 14,  loss: 0.659624: : 4621it [00:23, 198.84it/s]
+408it [00:00, 1122.72it/s]
+epoch:14,accuracy:0.700380
+epoch: 15,  loss: 0.636663: : 4621it [00:23, 197.72it/s]
+408it [00:00, 1124.87it/s]
+epoch:15,accuracy:0.698900
+epoch: 16,  loss: 0.613328: : 4621it [00:23, 196.59it/s]
+408it [00:00, 1121.12it/s]
+epoch:16,accuracy:0.699002
+epoch: 17,  loss: 0.588414: : 4621it [00:23, 196.21it/s]
+408it [00:00, 1123.67it/s]
+epoch:17,accuracy:0.697432
+epoch: 18,  loss: 0.570404: : 4621it [00:23, 199.34it/s]
+408it [00:00, 1126.24it/s]
+epoch:18,accuracy:0.696385
+epoch: 19,  loss: 0.528908: : 4621it [00:23, 193.55it/s]
+408it [00:00, 1126.99it/s]
+epoch:19,accuracy:0.695555
+epoch: 20,  loss: 0.540496: : 4621it [00:23, 192.98it/s]
+408it [00:00, 1127.32it/s]
+epoch:20,accuracy:0.694508
+epoch: 21,  loss: 0.517028: : 4621it [00:23, 199.50it/s]
+408it [00:00, 1126.44it/s]
+epoch:21,accuracy:0.693908
+epoch: 22,  loss: 0.507608: : 4621it [00:23, 195.29it/s]
+408it [00:00, 1126.13it/s]
+epoch:22,accuracy:0.693181
+epoch: 23,  loss: 0.525511: : 4621it [00:23, 193.89it/s]
+408it [00:00, 1122.31it/s]
+epoch:23,accuracy:0.693283
+epoch: 24,  loss: 0.458003: : 4621it [00:23, 195.89it/s]
+408it [00:00, 1124.08it/s]
+epoch:24,accuracy:0.693564
+epoch: 25,  loss: 0.444015: : 4621it [00:23, 194.61it/s]
+408it [00:00, 1124.77it/s]
+epoch:25,accuracy:0.692045
+epoch: 26,  loss: 0.446047: : 4621it [00:23, 193.64it/s]
+408it [00:00, 1124.23it/s]
+epoch:26,accuracy:0.692606
+epoch: 27,  loss: 0.443025: : 4621it [00:23, 200.14it/s]
+408it [00:00, 1123.98it/s]
+epoch:27,accuracy:0.692313
+epoch: 28,  loss: 0.432349: : 4621it [00:22, 202.08it/s]
+408it [00:00, 1114.32it/s]
+epoch:28,accuracy:0.691445
+epoch: 29,  loss: 0.403761: : 4621it [00:23, 197.53it/s]
+408it [00:00, 1117.99it/s]
+epoch:29,accuracy:0.690768
